@@ -3,6 +3,10 @@ public class DireccionIP {
     private String ipConPuntos;
     private String idDeRed;
     private String mascara;
+    private String privacidad;
+    private String esID;
+
+    private char clase;
 
     private int primerByteManual;
     private int segundoByteManual;
@@ -16,10 +20,6 @@ public class DireccionIP {
 
     int [] arrayIP = new int [4];
 
-    private char clase;
-
-    private String privacidad;
-    private String esID;
 
     public DireccionIP (String ipConPuntos){
         this.ipConPuntos = ipConPuntos;
