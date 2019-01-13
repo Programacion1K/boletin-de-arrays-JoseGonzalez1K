@@ -1,6 +1,9 @@
+/**
+ * Clase para manejar IPs
+ */
 public class DireccionIP {
 
-    private String ipConPuntos;
+    private String ipConPuntos;     //Definición de atributos
     private String idDeRed;
     private String mascara;
     private String privacidad;
@@ -20,11 +23,23 @@ public class DireccionIP {
 
     int[] arrayIP = new int[4];
 
-
+    /**
+     * Constructor de IPs con punto
+     *
+     * @param ipConPuntos
+     */
     public DireccionIP(String ipConPuntos) {
         this.ipConPuntos = ipConPuntos;
     }
 
+    /**
+     * Constructor de IPs manual
+     *
+     * @param primerByteManual
+     * @param segundoByteManual
+     * @param tercerByteManual
+     * @param cuartoByteManual
+     */
     public DireccionIP(int primerByteManual, int segundoByteManual, int tercerByteManual, int cuartoByteManual) {
 
         this.primerByteManual = primerByteManual;
@@ -34,11 +49,16 @@ public class DireccionIP {
 
     }
 
+    /**
+     * Constructor de IPs con Array
+     *
+     * @param arrayIP
+     */
     public DireccionIP(int[] arrayIP) {
         this.arrayIP = arrayIP;
     }
 
-    public String getIpConPuntos() {
+    public String getIpConPuntos() {        //Getters Y Setters
         return ipConPuntos;
     }
 
@@ -114,6 +134,11 @@ public class DireccionIP {
         this.cuartoByte = cuartoByte;
     }
 
+    /**
+     * Método que se encarga de generar toda la informacion de una IP
+     *
+     * @return String con toda la información de la IP
+     */
     public String infoIP() {
 
         String informacionIP = "Dirección IP: " + getIpConPuntos() + "\n" +
@@ -126,6 +151,9 @@ public class DireccionIP {
         return informacionIP;
     }
 
+    /**
+     * Método que se encarga de separar la IP en bytes
+     */
     public void partirIP() {
 
         String ip = ipConPuntos;
@@ -148,6 +176,9 @@ public class DireccionIP {
 
     }
 
+    /**
+     * Método que se encarga de asignar la clase a la IP
+     */
     public void asignarClase() {
 
         if (getPrimerByte() >= 0 && getPrimerByte() <= 127) {
@@ -176,6 +207,9 @@ public class DireccionIP {
 
     }
 
+    /**
+     * Método que se encarga de asignar la ID de red a la IP
+     */
     public void asignarID() {
 
         String id = getIpConPuntos();
@@ -192,6 +226,9 @@ public class DireccionIP {
 
     }
 
+    /**
+     * Método que se encarga de asignar la máscara de red a la IP
+     */
     public void asignarMascara() {
 
         if (getClase() == 'A') {
@@ -208,6 +245,9 @@ public class DireccionIP {
 
     }
 
+    /**
+     * Método que se encarga de asignar el tipo de privacidad a la IP
+     */
     public void asignarPrivacidad() {
 
         if (getPrimerByte() >= 0 && getPrimerByte() <= 10) {
@@ -282,6 +322,9 @@ public class DireccionIP {
 
     }
 
+    /**
+     * Método que se encarga de decir si una IP es una ID de red
+     */
     public void esID() {
 
         if (ipConPuntos.equals(idDeRed)) {
@@ -293,6 +336,5 @@ public class DireccionIP {
         }
 
     }
-
 
 }
