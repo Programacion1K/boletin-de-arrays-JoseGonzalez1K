@@ -18,14 +18,14 @@ public class DireccionIP {
     private int tercerByte;
     private int cuartoByte;
 
-    int [] arrayIP = new int [4];
+    int[] arrayIP = new int[4];
 
 
-    public DireccionIP (String ipConPuntos){
+    public DireccionIP(String ipConPuntos) {
         this.ipConPuntos = ipConPuntos;
     }
 
-    public DireccionIP (int primerByteManual, int segundoByteManual, int tercerByteManual, int cuartoByteManual){
+    public DireccionIP(int primerByteManual, int segundoByteManual, int tercerByteManual, int cuartoByteManual) {
 
         this.primerByteManual = primerByteManual;
         this.segundoByteManual = segundoByteManual;
@@ -34,11 +34,11 @@ public class DireccionIP {
 
     }
 
-    public DireccionIP (int [] arrayIP){
+    public DireccionIP(int[] arrayIP) {
         this.arrayIP = arrayIP;
     }
 
-    public  String getIpConPuntos() {
+    public String getIpConPuntos() {
         return ipConPuntos;
     }
 
@@ -114,109 +114,109 @@ public class DireccionIP {
         this.cuartoByte = cuartoByte;
     }
 
-    public String infoIP (){
+    public String infoIP() {
 
-        String informacionIP = "Dirección IP: "+getIpConPuntos()+"\n"+
-                                "ID de red: "+getIdDeRed()+"\n"+
-                                "Máscara de red: "+getMascara()+"\n"+
-                                "Clase: "+getClase()+"\n"+
-                                "Privacidad: "+getPrivacidad()+"\n"+
-                                "¿Es ID de la red?: "+getEsID();
+        String informacionIP = "Dirección IP: " + getIpConPuntos() + "\n" +
+                "ID de red: " + getIdDeRed() + "\n" +
+                "Máscara de red: " + getMascara() + "\n" +
+                "Clase: " + getClase() + "\n" +
+                "Privacidad: " + getPrivacidad() + "\n" +
+                "¿Es ID de la red?: " + getEsID();
 
         return informacionIP;
     }
 
-    public void partirIP (){
+    public void partirIP() {
 
-        String ip=ipConPuntos;
+        String ip = ipConPuntos;
 
-        int primero = Integer.parseInt(ip.substring(0,ip.indexOf('.')));
+        int primero = Integer.parseInt(ip.substring(0, ip.indexOf('.')));
         setPrimerByte(primero);
 
-        String sinElPrimero = ip.substring(ip.indexOf('.')+1,ip.length());
+        String sinElPrimero = ip.substring(ip.indexOf('.') + 1, ip.length());
 
-        int segundo = Integer.parseInt(sinElPrimero.substring(0,sinElPrimero.indexOf('.')));
+        int segundo = Integer.parseInt(sinElPrimero.substring(0, sinElPrimero.indexOf('.')));
         setSegundoByte(segundo);
 
-        String sinElSegundo = sinElPrimero.substring(sinElPrimero.indexOf('.')+1,sinElPrimero.length());
+        String sinElSegundo = sinElPrimero.substring(sinElPrimero.indexOf('.') + 1, sinElPrimero.length());
 
-        int tercero = Integer.parseInt(sinElSegundo.substring(0,sinElSegundo.indexOf('.')));
+        int tercero = Integer.parseInt(sinElSegundo.substring(0, sinElSegundo.indexOf('.')));
         setTercerByte(tercero);
 
-        int cuarto = Integer.parseInt(sinElSegundo.substring(sinElSegundo.indexOf('.')+1));
+        int cuarto = Integer.parseInt(sinElSegundo.substring(sinElSegundo.indexOf('.') + 1));
         setCuartoByte(cuarto);
 
     }
 
-    public void asignarClase (){
+    public void asignarClase() {
 
-        if (getPrimerByte()>=0 && getPrimerByte()<=127){
+        if (getPrimerByte() >= 0 && getPrimerByte() <= 127) {
             setClase('A');
         }
 
-        if (getPrimerByte()>=128 && getPrimerByte()<=191){
+        if (getPrimerByte() >= 128 && getPrimerByte() <= 191) {
             setClase('B');
         }
 
-        if (getPrimerByte()>=192 && getPrimerByte()<=223){
+        if (getPrimerByte() >= 192 && getPrimerByte() <= 223) {
             setClase('C');
         }
 
-        if (getSegundoByte()>=255){
+        if (getSegundoByte() >= 255) {
             setClase(' ');
         }
 
-        if (getTercerByte()>=255){
+        if (getTercerByte() >= 255) {
             setClase(' ');
         }
 
-        if (getCuartoByte()>=255){
+        if (getCuartoByte() >= 255) {
             setClase(' ');
         }
 
     }
 
-    public void asignarID (){
+    public void asignarID() {
 
         String id = getIpConPuntos();
 
-        String ipSinUltimo=id.substring(0,id.lastIndexOf('.')+1);
+        String ipSinUltimo = id.substring(0, id.lastIndexOf('.') + 1);
 
-        String ultimo=id.substring(id.lastIndexOf('.')+1);
+        String ultimo = id.substring(id.lastIndexOf('.') + 1);
 
-        ultimo="0";
+        ultimo = "0";
 
-        String idDefinitiva = ipSinUltimo+ultimo;
+        String idDefinitiva = ipSinUltimo + ultimo;
 
         setIdDeRed(idDefinitiva);
 
     }
 
-    public void asignarMascara (){
+    public void asignarMascara() {
 
-        if (getClase()=='A'){
+        if (getClase() == 'A') {
             setMascara("255.0.0.0");
         }
 
-        if (getClase()=='B'){
+        if (getClase() == 'B') {
             setMascara("255.255.0.0");
         }
 
-        if (getClase()=='C'){
+        if (getClase() == 'C') {
             setMascara("255.255.255.0");
         }
 
     }
 
-    public void asignarPrivacidad (){
+    public void asignarPrivacidad() {
 
-        if (getPrimerByte()>=0 && getPrimerByte()<=10){
+        if (getPrimerByte() >= 0 && getPrimerByte() <= 10) {
 
-            if (getSegundoByte() >=0 && getSegundoByte()<=255){
+            if (getSegundoByte() >= 0 && getSegundoByte() <= 255) {
 
-                if (getTercerByte() >=0 && getTercerByte()<=255){
+                if (getTercerByte() >= 0 && getTercerByte() <= 255) {
 
-                    if (getCuartoByte() >=0 && getCuartoByte()<=255){
+                    if (getCuartoByte() >= 0 && getCuartoByte() <= 255) {
                         setPrivacidad("Pública");
                     }
 
@@ -224,13 +224,13 @@ public class DireccionIP {
             }
         }
 
-        if (getPrimerByte()>=16 && getPrimerByte()<=172){
+        if (getPrimerByte() >= 16 && getPrimerByte() <= 172) {
 
-            if (getSegundoByte() >=0 && getSegundoByte()<=31){
+            if (getSegundoByte() >= 0 && getSegundoByte() <= 31) {
 
-                if (getTercerByte() >=0 && getTercerByte()<=255){
+                if (getTercerByte() >= 0 && getTercerByte() <= 255) {
 
-                    if (getCuartoByte() >=0 && getCuartoByte()<=255){
+                    if (getCuartoByte() >= 0 && getCuartoByte() <= 255) {
                         setPrivacidad("Pública");
                     }
 
@@ -238,13 +238,13 @@ public class DireccionIP {
             }
         }
 
-        if (getPrimerByte()>=168 && getPrimerByte()<=192){
+        if (getPrimerByte() >= 168 && getPrimerByte() <= 192) {
 
-            if (getSegundoByte() >=0 && getSegundoByte()<=168){
+            if (getSegundoByte() >= 0 && getSegundoByte() <= 168) {
 
-                if (getTercerByte() >=0 && getTercerByte()<=255){
+                if (getTercerByte() >= 0 && getTercerByte() <= 255) {
 
-                    if (getCuartoByte() >=0 && getCuartoByte()<=255){
+                    if (getCuartoByte() >= 0 && getCuartoByte() <= 255) {
                         setPrivacidad("Pública");
                     }
 
@@ -252,13 +252,13 @@ public class DireccionIP {
             }
         }
 
-        if (getPrimerByte()>=11 && getPrimerByte()<16){
+        if (getPrimerByte() >= 11 && getPrimerByte() < 16) {
 
-            if (getSegundoByte() >=0 && getSegundoByte()<=255){
+            if (getSegundoByte() >= 0 && getSegundoByte() <= 255) {
 
-                if (getTercerByte() >=0 && getTercerByte()<=255){
+                if (getTercerByte() >= 0 && getTercerByte() <= 255) {
 
-                    if (getCuartoByte() >=0 && getCuartoByte()<=255){
+                    if (getCuartoByte() >= 0 && getCuartoByte() <= 255) {
                         setPrivacidad("Privada");
                     }
 
@@ -266,13 +266,13 @@ public class DireccionIP {
             }
         }
 
-        if (getPrimerByte()>=168 && getPrimerByte()<172){
+        if (getPrimerByte() >= 168 && getPrimerByte() < 172) {
 
-            if (getSegundoByte() >=0 && getSegundoByte()<=255){
+            if (getSegundoByte() >= 0 && getSegundoByte() <= 255) {
 
-                if (getTercerByte() >=0 && getTercerByte()<=255){
+                if (getTercerByte() >= 0 && getTercerByte() <= 255) {
 
-                    if (getCuartoByte() >=0 && getCuartoByte()<=255){
+                    if (getCuartoByte() >= 0 && getCuartoByte() <= 255) {
                         setPrivacidad("Privada");
                     }
 
@@ -282,13 +282,13 @@ public class DireccionIP {
 
     }
 
-    public void esID (){
+    public void esID() {
 
-        if (ipConPuntos.equals(idDeRed)){
+        if (ipConPuntos.equals(idDeRed)) {
 
             setEsID("Sí");
 
-        }else {
+        } else {
             setEsID("No");
         }
 
